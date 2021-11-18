@@ -7,7 +7,7 @@ window.addEventListener("load", function () {
 document.querySelector("#play").addEventListener("click", function () {
   console.log("Play Video");
   video.play();
-  document.getElementById("volume").innerHTML = video.volume * 100 + "%";
+  document.querySelector("#volume").innerHTML = video.volume * 100 + "%";
 });
 
 document.querySelector("#pause").addEventListener("click", function () {
@@ -16,22 +16,24 @@ document.querySelector("#pause").addEventListener("click", function () {
 });
 
 document.querySelector("#slower").addEventListener("click", function () {
-  console.log(video.playbackRate);
-  video.playbackRate -= 0.05;
+  console.log("Slow Down");
+  video.playbackRate *= 0.95;
+  console.log("New video speed is " + video.playbackRate);
 });
 
 document.querySelector("#faster").addEventListener("click", function () {
-  console.log(video.playbackRate);
-  video.playbackRate += 0.05;
+  console.log("Speed Up");
+  video.playbackRate *= 1.05;
+  console.log("New video speed is " + video.playbackRate);
 });
 
 document.querySelector("#skip").addEventListener("click", function () {
-  console.log(video.currentTime);
-  video.currentTime += 15;
-
-  if (video.currentTime >= video.duration) {
+  if (video.duration - video.currentTime - 15 > 0) {
+    video.currentTime = video.currentTime + 15;
+    console.log("Current video" + video.currentTime);
+  } else {
     video.currentTime = 0;
-    console.log(video.currentTime);
+    console.log("Beggining of thr video");
   }
 });
 
@@ -54,11 +56,13 @@ document.querySelector("#slider").addEventListener("click", function () {
 });
 
 document.querySelector("#vintage").addEventListener("click", function () {
-  video.classList.add("oldSchool");
+  console.log("Change to Oldschool");
+  document.querySelector("#player1").classList.add("oldSchool");
 });
 
 document.querySelector("#orig").addEventListener("click", function () {
-  video.classList.remove("oldSchool");
+  console.log("Remove Oldschool");
+  document.querySelector("#player1").classList.remove("oldSchool");
 });
 
 // document.querySelector("#play").addEventListener("click", function() {
